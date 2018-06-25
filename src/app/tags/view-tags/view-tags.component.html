@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-selection-list #tags>
+    <mat-list-option *ngFor="let tag of availableTags">
+      {{tag.name}}
+    </mat-list-option>
+  </mat-selection-list>
+  <hr>
+  <mat-card-footer>
+    <div class="button-row">
+      <button mat-raised-button color="primary">Delete</button>
+    </div>
+  </mat-card-footer>
+</mat-card>

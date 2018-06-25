@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="isHandset ? 'dialog' : 'navigation'" [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
+    [opened]="!(isHandset | async)!.matches">
+    <mat-toolbar color="primary" routerLink="/">Savkar</mat-toolbar>
+    <mat-nav-list *ngIf="authService.isLoggedIn()">
+      <mat-tree [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl" class="example-tree">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+          <li class="mat-tree-node" [routerLink]="[node.type]" >
+            <button mat-icon-button></button>
+            {{node.filename | uppercase}}
+          </li>
+        </mat-tree-node>
+
+        <mat-nested-tree-node *matTreeNodeDef="let node; when: hasNestedChild">
+          <li>
+            <div class="mat-tree-node">
+              <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{nestedTreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+              </button>
+              {{node.filename | uppercase}}
+            </div>
+            <ul [class.example-tree-invisible]="!nestedTreeControl.isExpanded(node)">
+              <ng-container matTreeNodeOutlet></ng-container>
+            </ul>
+          </li>
+        </mat-nested-tree-node>
+      </mat-tree>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset | async)!.matches">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{url}}</span>
+      <ul>
+        <li class="list-style">
+          <a  *ngIf="!authService.isLoggedIn()" (click)= "redirectToLogin()">Login</a>
+        </li>
+        <li class="list-style">
+          <a  *ngIf="authService.isLoggedIn()" (click)="authService.logout()">Logout</a>
+        </li>
+      </ul>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

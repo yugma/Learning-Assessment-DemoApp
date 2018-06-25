@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-vertical-stepper linear="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Create a new tag</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Tag name" #tagname formControlName="tagName" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Associate
+          <b>{{firstFormGroup?.controls?.tagName?.value}}</b> with a parent tag</ng-template>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Parent tag" formControlName="parentTagName" [matAutocomplete]="autoGroup" />
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-option *ngFor="let tag of filteredAvailableTags | async" [value]="tag.name">
+              {{ tag.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</mat-card>

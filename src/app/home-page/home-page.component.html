@@ -1,0 +1,8 @@
+<mat-card>
+    <mat-card-title *ngIf="authService.isLoggedIn()">
+        <label>Welcome user!</label>
+    </mat-card-title>
+    <mat-card-title *ngIf="!authService.isLoggedIn()">
+            <label>Please Login!</label>
+        </mat-card-title>
+</mat-card>

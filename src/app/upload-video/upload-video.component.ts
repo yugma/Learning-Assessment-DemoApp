@@ -12,8 +12,8 @@ export class UploadVideoComponent implements OnInit {
   ngOnInit() {
   }
 
-  onFileComplete() {
-    console.log("FileUploaded successfully");
+  onFileComplete(param) {
+    console.log("FileUploaded successfully"+ param);
   }
 
 }

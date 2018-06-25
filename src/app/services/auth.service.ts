@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import {JwtHelper, tokenNotExpired} from 'angular2-jwt';
+import { tokenNotExpired } from 'angular-jwt';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -17,9 +17,9 @@ export class AuthService {
       JSON.stringify(credentials)).pipe(
         map(response => {
           let result = <any>response;
-          if(result && result.token){
-              localStorage.setItem('token', result.token);
-              return true;
+          if (result && result.token) {
+            localStorage.setItem('token', result.token);
+            return true;
           }
           return false;
         })

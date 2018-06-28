@@ -6,6 +6,9 @@
         <mat-form-field>
           <input matInput placeholder="Tag name" #tagname formControlName="tagName" required>
         </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Tag Description" #tagDesc formControlName="tagDesc" required>
+        </mat-form-field>
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
@@ -25,16 +28,16 @@
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext (click)="saveTag()">Save</button>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel>Save</ng-template>
       You are now done.
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>        
       </div>
     </mat-step>
   </mat-vertical-stepper>

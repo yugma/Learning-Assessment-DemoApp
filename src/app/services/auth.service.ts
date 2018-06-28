@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { tokenNotExpired } from 'angular-jwt';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private helper: JwtHelperService) { }
 
   login(credentials) {
     return this.http.post('/api/authenticate',
@@ -32,7 +31,8 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return tokenNotExpired();
+    let token = localStorage.getItem('token');    
+    return !(this.helper.isTokenExpired(token));
   }
 
 }

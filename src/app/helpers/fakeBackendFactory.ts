@@ -28,7 +28,7 @@ export class fakeBackendFactory implements HttpInterceptor {
                             username: user.username,
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+                            token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6ImRmNzJjOWIzLTgyMzktNDY3Yi1iZjhkLTc2M2Q5NDNiMTMyMCIsImlhdCI6MTUzMDA5MzY2MywiZXhwIjoxNTMwMDk3Mjc4fQ.n__PuyQcGHIwEt_XFpANSv9YbTgczqB3nlRAzWVlqvI'
                         };
 
                         return of(new HttpResponse({ status: 200, body: body }));

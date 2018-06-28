@@ -23,6 +23,7 @@ import {
   MatProgressSpinnerModule,
   MatSnackBarModule,
 } from '@angular/material';
+import { JwtModule } from '@auth0/angular-jwt';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TagsComponent } from './tags/tags.component';
 import { ModulesComponent } from './modules/modules.component';
@@ -81,9 +82,18 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MatAutocompleteModule,
-    MatProgressBarModule, 
-    MatProgressSpinnerModule,   
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatSnackBarModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token')
+        },
+        whitelistedDomains: ['localhost:4200'],
+        blacklistedRoutes: []
+      }
+    }),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

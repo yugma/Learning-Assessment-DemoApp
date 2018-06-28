@@ -1,7 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="isHandset ? 'dialog' : 'navigation'" [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
     [opened]="!(isHandset | async)!.matches">
-    <mat-toolbar color="primary" routerLink="/">Savkar</mat-toolbar>
+    <mat-toolbar color="primary" routerLink="/">Demo App</mat-toolbar>
     <mat-nav-list *ngIf="authService.isLoggedIn()">
       <mat-tree [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl" class="example-tree">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
